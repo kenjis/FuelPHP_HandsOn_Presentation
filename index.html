@@ -110,38 +110,95 @@
 					</script>
 				</section>
 
-				<section data-markdown>
-					<script type="text/template">
-					### 環境構築（1）
-					* XAMPP/MAMPのインストール
-					* NetBeans/NetBeans FuelPHP plugin のインストール
-					* Git/GitHub クライアントのインストール
-					* ここまでは勉強会の前に各自で完了することが望ましい
-					</script>
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+						### 環境構築（1）
+						* XAMPP/MAMPのインストール
+						* NetBeans/NetBeans FuelPHP plugin のインストール
+						* Git/GitHub クライアントのインストール
+						* ここまでは勉強会の前に各自で完了することが望ましい
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+						### XAMPP/MAMP
+						* XAMPP for Windows 1.8.2 http://www.apachefriends.org/jp/xampp-windows.html
+						* MAMP 2.1.4 http://www.mamp.info/en/downloads/index.html  
+						---
+						<small>Windows の方は XAMPP、Mac OS X の方は MAMP をインストールしてください</small>
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+						### NetBeans/NetBeans FuelPHP plugin
+						* NetBeans 7.3.1 PHP https://netbeans.org/downloads/
+						* NetBeans FuelPHP plugin http://plugins.netbeans.org/plugin/44665/php-fuelphp-framework
+						---
+						<small>両方をインストールしてください。JRE 6 or 7 が別途必要です</small>
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+						### Git/GitHub クライアント
+						* Git http://git-scm.com/
+						* GitHub for Windows http://windows.github.com/
+						* GitHub for Mac http://mac.github.com/
+						---
+						<small>どれか 1つをインストールしてください  
+						GitHub に慣れていない方は GitHub for X をインストールしてください</small>
+						</script>
+					</section>
 				</section>
 
 				<section data-markdown>
 					<script type="text/template">
 					### 環境構築（2）
-					* 1人が GitHub に空のリポジトリ作成し、もう1人に共有する
-					* GitHub のリポジトリを手許に clone
+					* 1人が GitHub に空のリポジトリ（名前は **fuelhandson** とします）を作成し、もう 1人と共有する
+					* GitHub の fuelhandson リポジトリを手許に clone
 					* 1人が何かテキストファイルを作成し、commit & push してみる
-					* もう1人が fetch & merge（= pull）して、そのファイルに何か追加して commit & push してみる
+					* もう 1人が fetch & merge（= pull）して、そのファイルに何か追加して commit & push してみる
 					</script>
 				</section>
 
-				<section data-markdown>
-					<script type="text/template">
-					### 環境構築（3）
-					* FuelPHP の Zip を取得し展開し、中身を手許の作業領域にコピー（必ずトップフォルダに oil があるように配置する）
-					* Apache からアクセスできるように public フォルダを Apache のドキュメントルートにシンボリックリンクする
-					</script>
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+						### 環境構築（3）
+						* FuelPHP の Zip を取得し展開し、中身を手許の fuelhandson フォルダにコピー（必ずトップフォルダに oil があるように配置する）
+						* Apache からアクセスできるように public フォルダを Apache のドキュメントルートにシンボリックリンクする
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+						### FuelPHP 1.6.1 のインストール
+						* 公式 Zip ファイル http://fuelphp.com/
+						* [非公式な依存パッケージ込み版](http://d.hatena.ne.jp/Kenji_s/20130618/fuelphp_1_6_1_all) http://fuelphp1st.com/downloads/fuelphp-1.6.1-all.zip
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+						### Apache のドキュメントルートにシンボリックリンク
+						Windows
+						```
+						C:\Windows\system32>cd \xampp\htdocs
+						C:\xampp\htdocs>mklink /d fuelhandson "c:\path\to\fuelhandson\public"
+						```
+						<small>管理者としてコマンドプロンプトを実行する必要があります</small>
+
+						Mac OS X
+						```bash
+						$ cd /Applications/MAMP/htdocs
+						$ ln -s /path/to/fuelhandson/public fuelhandson
+						```
+						</script>
+					</section>
 				</section>
 
 				<section data-markdown>
 					<script type="text/template">
 					### 環境構築（4）
-					* ブラウザからアクセスし、FuelPHP の Welcome ページが表示されたら OK
+					* ブラウザから http://localhost/fuelhandson/ にアクセスし、FuelPHP の Welcome ページが表示されたら OK
 					* 手許のリポジトリに commit し、GitHub へ push
 					* もう1人も fetch & merge （= pull）して、シンボリックリンクをはり、同じく Welcome ページが表示されることを確認
 					</script>
@@ -184,14 +241,26 @@
 					</script>
 				</section>
 
-				<section data-markdown>
-					<script type="text/template">
-					### データベース設定
-					* MySQL でユーザと専用データベースを作成
-					* ユーザ名 = データベース名 = fuelhandson
-					* パスワードなし
-					* config/development/db.php に接続設定を記載
-					</script>
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+						### データベース設定
+						* MySQL でユーザと専用データベースを作成
+						* ユーザ名 = データベース名 = fuelhandson
+						* パスワードなし
+						* config/development/db.php に接続設定を記載
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+						### config/development/db.php
+```php
+'dsn'        => 'mysql:host=127.0.0.1;port=3306;dbname=fuelhandson;charset=utf8',
+'username'   => 'fuelhandson',
+'password'   => '',
+```
+						</script>
+					</section>
 				</section>
 
 				<section data-markdown>
@@ -205,9 +274,9 @@
 				<section data-markdown>
 					<script type="text/template">
 					### 簡易 BBS Scaffold
-```bash
-$ php oil generate scaffold bbs post_date:date message:varchar[100] --singular
-```
+					```bash
+					$ php oil generate scaffold bbs post_date:date message:varchar[100] --singular
+					```
 					* --singular オプションは FuelPHP 1.6 以上が必要
 					* ファイルが生成される
 					</script>
@@ -216,9 +285,9 @@ $ php oil generate scaffold bbs post_date:date message:varchar[100] --singular
 				<section data-markdown>
 					<script type="text/template">
 					### 簡易 BBS Migrate
-```bash
-$ php oil refine migrate
-```
+					```bash
+					$ php oil refine migrate
+					```
 					* テーブルが作成される
 					</script>
 				</section>
