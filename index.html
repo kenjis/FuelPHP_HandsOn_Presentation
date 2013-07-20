@@ -127,7 +127,7 @@
 						* MAMP 2.1.4 http://www.mamp.info/en/downloads/index.html  
 						---
 						<small>Windows の方は XAMPP、Mac OS X の方は MAMP をインストールしてください</small><br>
-						<small>※MAMPは「環境設定」の「ポート」タブで「ApacheとMySQLの標準ポートに設定」を押下、<br>
+						<small>※MAMP は「環境設定」の「ポート」タブで「Apache と MySQL の標準ポートに設定」を押下、<br>
 						「OK」してから「サーバを起動」してください</small>
 						</script>
 					</section>
@@ -197,14 +197,39 @@
 					</section>
 				</section>
 
-				<section data-markdown>
-					<script type="text/template">
-					### 環境構築（4）
-					* ブラウザから http://localhost/fuelhandson/ にアクセスし、FuelPHP の Welcome ページが表示されたら OK
-					* 手許のリポジトリに commit する前に .gitignore を作成
-					* 手許のリポジトリに commit し、GitHub へ push
-					* もう1人も fetch & merge （= pull）して、シンボリックリンクをはり、同じく Welcome ページが表示されることを確認
-					</script>
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+						### 環境構築（4）
+						* ブラウザから http://localhost/fuelhandson/ にアクセスし、FuelPHP の Welcome ページが表示されたら OK
+						* 手許のリポジトリに commit する前に .gitignore を作成
+						* 手許のリポジトリに commit し、GitHub へ push
+						* もう1人も fetch & merge （= pull）して、シンボリックリンクをはり、同じく Welcome ページが表示されることを確認
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+						### .gitignore
+```
+*~
+*.bak
+Thumbs.db
+desktop.ini
+.DS_Store
+.buildpath
+.project
+.settings
+*.tmproj
+build
+.idea
+/fuel/app/logs/*/*/*
+/fuel/app/cache/*/*
+/fuel/app/config/crypt.php
+nbproject/
+```
+<small>FuelPHP に含まれる .gitignore ではソースコードをうまく共有できませんので、<br>必ず、上記に変更してください</small>
+						</script>
+					</section>
 				</section>
 
 				<section data-markdown>
@@ -249,9 +274,18 @@
 						<script type="text/template">
 						### データベース設定
 						* MySQL でユーザと専用データベースを作成
-						* ユーザ名 = データベース名 = fuelhandson
-						* パスワードなし
 						* config/development/db.php に接続設定を記載
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+						### データベースユーザとデータベースの作成
+						* phpMyAdmin でユーザを作成
+						  * ユーザ名： fuelhandson
+						  * ホスト： ローカル
+						  * パスワード： パスワード無し
+						  * 「同名のデータベースを作成してすべての特権を与える」にチェック
+						* データベースの「照合順序」を「utf8_general_ci」に変更
 						</script>
 					</section>
 					<section data-markdown>
@@ -262,6 +296,8 @@
 'username'   => 'fuelhandson',
 'password'   => '',
 ```
+						<small>MAMP では host=localhost では動作しないことがありますので、<br>
+						上記のように 127.0.0.1 を指定してください</small>
 						</script>
 					</section>
 				</section>
